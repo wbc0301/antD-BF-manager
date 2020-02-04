@@ -1,6 +1,6 @@
 import React from 'react';
 import {Card, Button} from 'antd';
-import './../ui.less';
+import './ui.less';
 
 export default class Buttons extends React.Component{
   render() {
