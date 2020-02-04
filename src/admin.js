@@ -3,6 +3,8 @@ import { Row, Col } from 'antd';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import NavLeft from './components/NavLeft';
+import Home from './pages/home';
+
 
 import './style/common.less';
 
@@ -17,7 +19,7 @@ export default class Admin extends Component {
         <Col span={20} className="main">
           <Header/>
           <Row className="content">
-            content
+            <Home/>
             {/* this.props.children */}
             {/* Vue中通过 <router-view> 加载子组件;  React 中通过 this.props.children */}
           </Row>
