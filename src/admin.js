@@ -16,12 +16,14 @@ export default class Admin extends Component {
         </Col>
         <Col span={20} className="main">
           <Header/>
-          <Row className="content">content</Row>
+          <Row className="content">
+            content
+            {/* this.props.children */}
+            {/* Vue中通过 <router-view> 加载子组件;  React 中通过 this.props.children */}
+          </Row>
           <Footer/>
         </Col>
-
       </Row>
     )
   }
-
 }

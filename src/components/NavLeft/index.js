@@ -1,3 +1,5 @@
+// 菜单导航组件
+
 import React, { Component } from 'react';
 import { Menu, Icon } from 'antd';
 import menuConfig from '../../config/menuConfig';
@@ -13,6 +15,7 @@ export default class NavLeft extends Component {
     this.setState({menuTreeNode});
   }
 
+  // 渲染菜单函数
   renderMenu = (data) => {
     return data.map((item) => {
       if(item.children) {
@@ -35,9 +38,7 @@ export default class NavLeft extends Component {
         </div>
         <Menu theme="dark">
           {this.state.menuTreeNode}
-
-        </Menu>
-
+        </Menu>        
       </div>
     )
   }
