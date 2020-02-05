@@ -3,9 +3,12 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import App from './App';
 import Login from './pages/login';
 import Admin from './admin';
-import Buttons from './pages/ui/buttons.js';
-import Modals from './pages/ui/modals.js';
+import Buttons from './pages/ui/buttons';
+import Modals from './pages/ui/modals';
 import NoMatch from './pages/nomatch'; // 404页面
+
+import FormLogin from './pages/form/login'; // 登录注册
+import FormRegister from './pages/form/register';
 
 export default class IRouter extends React.Component {
   render() {
@@ -19,6 +22,9 @@ export default class IRouter extends React.Component {
                 <Switch>
                   <Route path="/ui/buttons" component={Buttons} />
                   <Route path="/ui/modals" component={Modals} />
+                  <Route path="/form/login" component={FormLogin} />
+                  <Route path="/form/reg" component={FormRegister} />
+
                   <Route component={NoMatch} />
                 </Switch>
               </Admin>
