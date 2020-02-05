@@ -7,8 +7,10 @@ import Buttons from './pages/ui/buttons';
 import Modals from './pages/ui/modals';
 import NoMatch from './pages/nomatch'; // 404页面
 
-import FormLogin from './pages/form/login'; // 登录注册
+import FormLogin from './pages/form/login'; // 表单   登录注册
 import FormRegister from './pages/form/register';
+
+import BasicTable from './pages/table/basicTable'; // table
 
 export default class IRouter extends React.Component {
   render() {
@@ -24,6 +26,7 @@ export default class IRouter extends React.Component {
                   <Route path="/ui/modals" component={Modals} />
                   <Route path="/form/login" component={FormLogin} />
                   <Route path="/form/reg" component={FormRegister} />
+                  <Route path="/table/basic" component={BasicTable} />
 
                   <Route component={NoMatch} />
                 </Switch>
