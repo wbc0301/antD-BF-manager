@@ -5,6 +5,8 @@ import Footer from './components/Footer';
 import NavLeft from './components/NavLeft';
 import Home from './pages/home';
 
+import './mock/mock';
+
 
 import './style/common.less';
 

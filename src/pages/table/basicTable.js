@@ -3,7 +3,7 @@ import { Card, Table, Tag, Divider } from 'antd';
 import './../ui/ui.less';
 
 import axios from './../../axios';
-import './../../mock/mock';
+// import './../../mock/mock'; // 可以放在入口文件中引入
 
 export default class BasicTable extends React.Component {
 
