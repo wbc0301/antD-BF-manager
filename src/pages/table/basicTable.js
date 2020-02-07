@@ -2,12 +2,13 @@ import React from 'react';
 import { Card, Table, Tag, Divider } from 'antd';
 import './../ui/ui.less';
 
-import axios from 'axios';
+import axios from './../../axios';
 import './../../mock/mock';
 
 export default class BasicTable extends React.Component {
 
   componentWillMount() {
+    // 表格1 数据
     const data = [
       {
         key: '1',
@@ -33,18 +34,28 @@ export default class BasicTable extends React.Component {
     ];
     this.setState({ data });
 
-    // 动态获取mock数据
-    axios.get('/api/list.json').then(res => {
-      console.log(res);
-      if(res.status === 200 && res.data.code === 0) {
-        const dataSource2 = res.data.result.list;
-        this.setState({dataSource2});
-      }
+    
+    this.request();
+  }
 
+  // 动态获取mock数据
+  request = () => {
+    axios.ajax({ url: '/api/list.json', data: { isShowLoading: true } }).then(res => {
+      console.log(res);
+      const dataSource2 = res.result.list;
+      this.setState({ dataSource2 }); // 表格2 数据
+    })
+  }
+
+  onRowClick = (record, index) => {
+    this.setState({
+      selectedRowKeys: [index], // 选中项的 key 数组
+      selectedItem: record // 这里获取选中项数据
     })
   }
 
   render() {
+    // 表格1 每列
     const columns = [
       {
         title: 'Name',
@@ -94,6 +105,7 @@ export default class BasicTable extends React.Component {
         ),
       },
     ];
+    // 表格2 每列
     const columns2 = [
       {
         title: 'id',
@@ -109,7 +121,7 @@ export default class BasicTable extends React.Component {
         title: '性别',
         key: 'sex',
         dataIndex: 'sex',
-        render(sex) {
+        render(sex, a, b) {
           return sex == 1 ? '男' : '女'
         }
       },
@@ -163,6 +175,11 @@ export default class BasicTable extends React.Component {
       }
     ]
 
+    const { selectedRowKeys } = this.state
+    const rowSelection = {
+      type: 'radio',
+      selectedRowKeys
+    }
 
     return (
       <div>
@@ -178,6 +195,33 @@ export default class BasicTable extends React.Component {
         <Card title="动态数据渲染表格-Mock" className="card-wrap">
           <Table
             bordered
+            columns={columns2}
+            dataSource={this.state.dataSource2}
+            pagination={false}
+          />
+        </Card>
+
+        <Card title="表格-单选" className="card-wrap">
+          <Table
+            bordered
+            rowSelection={rowSelection}
+            columns={columns2}
+            dataSource={this.state.dataSource2}
+            pagination={false}
+            onRow={(record, index) => {
+              return {
+                onClick: () => {
+                  this.onRowClick(record,index);
+                }
+              }
+            }}
+          />
+        </Card>
+
+        <Card title="表格-复选" className="card-wrap">
+          <Table
+            bordered
+            rowSelection={{ type: 'checkbox' }}
             columns={columns2}
             dataSource={this.state.dataSource2}
             pagination={false}
